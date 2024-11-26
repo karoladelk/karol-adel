@@ -1,49 +1,59 @@
 <section class="banner-section">
   <!-- Top Frame -->
   <div class="banner-top">
-    <img src="{{ section.settings.top_frame | file_url }}" alt="Top Frame" class="banner-top-frame">
+    <img
+      src="{{ section.settings.top_frame | file_url }}"
+      alt="Top Frame"
+      class="banner-top-frame"
+      width="100%"
+      height="auto"
+    >
   </div>
 
   <!-- Bottom Content -->
   <div class="banner-bottom">
+    <!-- Left Content -->
     <div class="banner-left">
-      <!-- Left Content: Heading, Subheading, Button -->
       <h1 class="banner-heading">{{ section.settings.heading }}</h1>
       <p class="banner-subheading">{{ section.settings.subheading }}</p>
-      <a href="{{ section.settings.button_link }}" class="banner-button">{{ section.settings.button_text }}</a>
+      <a href="{{ section.settings.button_link }}" class="banner-button">
+        {{ section.settings.button_text }}
+      </a>
     </div>
 
+    <!-- Right Content -->
     <div class="banner-right">
-      <!-- Right Content: Bottom Frame -->
-      <img src="{{ section.settings.bottom_frame | file_url }}" alt="Bottom Frame" class="banner-bottom-frame">
+      <img
+        src="{{ section.settings.bottom_frame | file_url }}"
+        alt="Bottom Frame"
+        class="banner-bottom-frame"
+        width="100%"
+        height="auto"
+      >
     </div>
   </div>
 </section>
 
 <style>
-  /* General Styles for the Banner Section */
   .banner-section {
     display: flex;
     flex-direction: column;
     align-items: center;
+    text-align: center;
     margin: 0 auto;
     max-width: 1200px;
-    text-align: center;
   }
 
-  /* Top Frame */
   .banner-top {
     width: 100%;
-    text-align: center;
     margin-bottom: 20px;
   }
 
-  .banner-top-frame {
+  .banner-top img {
     max-width: 100%;
     height: auto;
   }
 
-  /* Bottom Content */
   .banner-bottom {
     display: flex;
     justify-content: space-between;
@@ -52,7 +62,6 @@
     gap: 20px;
   }
 
-  /* Left Content */
   .banner-left {
     flex: 1;
     text-align: left;
@@ -85,18 +94,11 @@
     color: #ffd700;
   }
 
-  /* Right Content */
-  .banner-right {
-    flex: 1;
-    text-align: right;
-  }
-
-  .banner-bottom-frame {
+  .banner-right img {
     max-width: 100%;
     height: auto;
   }
 
-  /* Responsive Design */
   @media (max-width: 768px) {
     .banner-bottom {
       flex-direction: column;
@@ -111,12 +113,17 @@
 
 {% schema %}
 {
-  "name": "Banner Section",
+  "name": "Custom Banner",
   "settings": [
     {
       "type": "image_picker",
       "id": "top_frame",
       "label": "Top Frame Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "bottom_frame",
+      "label": "Bottom Frame Image"
     },
     {
       "type": "text",
@@ -141,16 +148,11 @@
       "id": "button_link",
       "label": "Button Link",
       "default": "/collections/all"
-    },
-    {
-      "type": "image_picker",
-      "id": "bottom_frame",
-      "label": "Bottom Frame Image"
     }
   ],
   "presets": [
     {
-      "name": "Banner Section",
+      "name": "Custom Banner",
       "category": "Custom"
     }
   ]
