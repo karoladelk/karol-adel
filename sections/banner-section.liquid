@@ -1,16 +1,16 @@
 <section class="banner-section">
   <!-- Top Frame -->
   <div class="banner-top">
-    {% if section.settings.image %}
+    {% if section.settings.top_frame %}
       {{
-        section.settings.image
+        section.settings.top_frame
         | image_url: width: 3840
         | image_tag: 
           alt: "Top Frame", 
           class: "banner-top-frame"
       }}
     {% else %}
-      <p>No image selected</p>
+      <p>No top frame selected</p>
     {% endif %}
   </div>
 
@@ -27,16 +27,16 @@
 
     <!-- Right Content -->
     <div class="banner-right">
-      {% if section.settings.image %}
+      {% if section.settings.bottom_frame %}
         {{
-          section.settings.image
+          section.settings.bottom_frame
           | image_url: width: 3840
           | image_tag: 
             alt: "Bottom Frame", 
             class: "banner-bottom-frame"
         }}
       {% else %}
-        <p>No image selected</p>
+        <p>No bottom frame selected</p>
       {% endif %}
     </div>
   </div>
@@ -44,6 +44,7 @@
 
 
 <style>
+  /* General Banner Section */
   .banner-section {
     display: flex;
     flex-direction: column;
@@ -53,7 +54,7 @@
     max-width: 1200px;
   }
 
-  /* Top Frame Styles */
+  /* Top Frame */
   .banner-top {
     width: 100%;
     margin-bottom: 20px;
@@ -64,23 +65,21 @@
     height: auto;
   }
 
-  /* Bottom Content Layout */
+  /* Bottom Content */
   .banner-bottom {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
     width: 100%;
-    gap: 20px;
+    height: 400px; /* Fixed height for proportional display */
   }
 
   /* Left Content */
   .banner-left {
     flex: 1;
-    text-align: left;
     display: flex;
     flex-direction: column;
     justify-content: center;
     padding: 20px;
+    text-align: left;
   }
 
   .banner-heading {
@@ -110,34 +109,19 @@
     color: #ffd700;
   }
 
-  /* Right Content (Image) */
+  /* Right Content */
   .banner-right {
     flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 20px;
+    overflow: hidden; /* Ensure that only part of the image is shown */
   }
 
   .banner-right img {
-    max-width: 100%;
-    height: auto;
-    object-fit: contain;
-  }
+    width: 100%; /* Ensure full width */
+    height:
 
-  /* Responsive Design for Mobile */
-  @media (max-width: 768px) {
-    .banner-bottom {
-      flex-direction: column;
-      text-align: center;
-    }
-
-    .banner-left,
-    .banner-right {
-      text-align: center;
-    }
-  }
-</style>
 
 {% schema %}
 {
