@@ -1,9 +1,9 @@
 <section class="banner-section">
   <!-- Top Frame -->
   <div class="banner-top">
-    {% if section.settings.top_frame %}
+    {% if section.settings.frame %}
       {{
-        section.settings.top_frame
+        section.settings.frame
         | image_url: width: 3840
         | image_tag: 
           alt: "Top Frame", 
@@ -27,9 +27,9 @@
 
     <!-- Right Content -->
     <div class="banner-right">
-      {% if section.settings.bottom_frame %}
+      {% if section.settings.frame %}
         {{
-          section.settings.bottom_frame
+          section.settings.frame
           | image_url: width: 3840
           | image_tag: 
             alt: "Bottom Frame", 
@@ -129,13 +129,8 @@
   "settings": [
     {
       "type": "image_picker",
-      "id": "top_frame",
+      "id": "frame",
       "label": "Top Frame Image"
-    },
-    {
-      "type": "image_picker",
-      "id": "bottom_frame",
-      "label": "Bottom Frame Image"
     },
     {
       "type": "text",
