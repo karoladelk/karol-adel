@@ -1,13 +1,19 @@
 <section class="banner-section">
   <!-- Top Frame -->
-  <div class="banner-top">
-      {{
-        section.settings.image
-        | image_url: width: 3840
-        | image_tag:
-          width: section.settings.image.width      }}
-    
-  </div>
+<div class="banner-top">
+  {% if section.settings.image %}
+    {{
+      section.settings.image
+      | image_url: width: 3840
+      | image_tag: 
+        alt: "Top Frame", 
+        class: "banner-top-frame"
+    }}
+  {% else %}
+    <p>No image selected</p>
+  {% endif %}
+</div>
+
 
   <!-- Bottom Content -->
   <div class="banner-bottom">
