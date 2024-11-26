@@ -47,7 +47,60 @@
   </div>
 </slideshow-component>
 
+{% schema %}
 {
+  "name": "Custom Banner",
+  "settings": [
+    {
+      "type": "select",
+      "id": "slide_height",
+      "label": "Slide Height",
+      "options": [
+        {
+          "value": "small",
+          "label": "Small"
+        },
+        {
+          "value": "medium",
+          "label": "Medium"
+        },
+        {
+          "value": "large",
+          "label": "Large"
+        }
+      ],
+      "default": "medium"
+    },
+    {
+      "type": "checkbox",
+      "id": "auto_rotate",
+      "label": "Auto Rotate Slides",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "change_slides_speed",
+      "label": "Slide Speed",
+      "min": 3,
+      "max": 10,
+      "step": 1,
+      "default": 5
+    },
+    {
+      "type": "checkbox",
+      "id": "show_text_below",
+      "label": "Show Text Below Slides",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "accessibility_info",
+      "label": "Accessibility Label",
+      "default": "Custom Banner Slider"
+    }
+  ],
+  "blocks": [
+    {
   "type": "slide",
   "name": "Slide",
   "settings": [
@@ -81,11 +134,30 @@
       "default": "Learn More"
     },
     {
-      "type": "url",
-      "id": "button_link",
+      "type": "text",
+      "id": "text",
       "label": "Button Link",
       "default": "#"
     }
   ]
 }
+
+  ],
+  "presets": [
+    {
+      "name": "Custom Banner",
+      "category": "Slideshow",
+      "blocks": [
+        {
+          "type": "slide"
+        },
+        {
+          "type": "slide"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
 
