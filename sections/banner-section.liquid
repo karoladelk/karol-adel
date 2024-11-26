@@ -125,12 +125,17 @@
 
 {% schema %}
 {
-  "name": "Custom Banner",
+  "name": "Split Banner",
   "settings": [
     {
       "type": "image_picker",
-      "id": "image",
-      "label": "Banner Image"
+      "id": "top_frame",
+      "label": "Top Frame Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "bottom_frame",
+      "label": "Bottom Frame Image"
     },
     {
       "type": "text",
@@ -159,10 +164,11 @@
   ],
   "presets": [
     {
-      "name": "Custom Banner",
+      "name": "Split Banner",
       "category": "Custom"
     }
   ]
 }
 {% endschema %}
+
 
