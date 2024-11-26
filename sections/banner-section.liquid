@@ -1,163 +1,158 @@
-{{ 'section-image-banner.css' | asset_url | stylesheet_tag }}
-{{ 'component-slider.css' | asset_url | stylesheet_tag }}
-{{ 'component-slideshow.css' | asset_url | stylesheet_tag }}
-
-<slideshow-component
-  class="slider-mobile-gutter{% if section.settings.layout == 'grid' %} page-width{% endif %}{% if section.settings.show_text_below %} mobile-text-below{% endif %}"
-  role="region"
-  aria-roledescription="{{ 'sections.slideshow.carousel' | t }}"
-  aria-label="{{ section.settings.accessibility_info | escape }}"
->
-  <div
-    class="slideshow banner banner--{{ section.settings.slide_height }} grid grid--1-col slider slider--everywhere{% if section.settings.show_text_below %} banner--mobile-bottom{% endif %}{% if section.blocks.first.settings.image == blank %} slideshow--placeholder{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
-    id="Slider-{{ section.id }}"
-    aria-live="polite"
-    aria-atomic="true"
-    data-autoplay="{{ section.settings.auto_rotate }}"
-    data-speed="{{ section.settings.change_slides_speed }}"
-  >
-    {%- for block in section.blocks -%}
-      <div
-        class="slideshow__slide grid__item grid--1-col slider__slide"
-        id="Slide-{{ section.id }}-{{ forloop.index }}"
-        {{ block.shopify_attributes }}
-        role="group"
-        aria-roledescription="{{ 'sections.slideshow.slide' | t }}"
-        aria-label="{{ forloop.index }} {{ 'general.slider.of' | t }} {{ forloop.length }}"
-        tabindex="-1"
-      >
-        <div class="slideshow__media banner__media media{% if block.settings.image == blank %} placeholder{% endif %}">
-          {%- if block.settings.image -%}
-            <img src="{{ block.settings.image | file_url }}" alt="{{ block.settings.alt_text }}">
-          {%- else -%}
-            {{ 'placeholder-image' | placeholder_svg_tag: 'placeholder-svg' }}
-          {%- endif -%}
-        </div>
-        <div class="slideshow__text-wrapper banner__content">
-          <div class="slideshow__text banner__box">
-            <h2>{{ block.settings.heading }}</h2>
-            <p>{{ block.settings.subheading }}</p>
-            {%- if block.settings.button_text != blank -%}
-              <a href="{{ block.settings.button_link }}" class="button">{{ block.settings.button_text }}</a>
-            {%- endif -%}
-          </div>
-        </div>
-      </div>
-    {%- endfor -%}
+<section class="banner-section">
+  <!-- Top Frame -->
+  <div class="banner-top">
+    <img src="{{ section.settings.top_frame | file_url }}" alt="Top Frame" class="banner-top-frame">
   </div>
-</slideshow-component>
+
+  <!-- Bottom Content -->
+  <div class="banner-bottom">
+    <div class="banner-left">
+      <!-- Left Content: Heading, Subheading, Button -->
+      <h1 class="banner-heading">{{ section.settings.heading }}</h1>
+      <p class="banner-subheading">{{ section.settings.subheading }}</p>
+      <a href="{{ section.settings.button_link }}" class="banner-button">{{ section.settings.button_text }}</a>
+    </div>
+
+    <div class="banner-right">
+      <!-- Right Content: Bottom Frame -->
+      <img src="{{ section.settings.bottom_frame | file_url }}" alt="Bottom Frame" class="banner-bottom-frame">
+    </div>
+  </div>
+</section>
+
+<style>
+  /* General Styles for the Banner Section */
+  .banner-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+    max-width: 1200px;
+    text-align: center;
+  }
+
+  /* Top Frame */
+  .banner-top {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .banner-top-frame {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Bottom Content */
+  .banner-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 20px;
+  }
+
+  /* Left Content */
+  .banner-left {
+    flex: 1;
+    text-align: left;
+  }
+
+  .banner-heading {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  .banner-subheading {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+  }
+
+  .banner-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #ffd700;
+    color: #000;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+  }
+
+  .banner-button:hover {
+    background-color: #000;
+    color: #ffd700;
+  }
+
+  /* Right Content */
+  .banner-right {
+    flex: 1;
+    text-align: right;
+  }
+
+  .banner-bottom-frame {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .banner-bottom {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .banner-left, .banner-right {
+      text-align: center;
+    }
+  }
+</style>
 
 {% schema %}
 {
-  "name": "Custom Banner",
-  "settings": [
-    {
-      "type": "select",
-      "id": "slide_height",
-      "label": "Slide Height",
-      "options": [
-        {
-          "value": "small",
-          "label": "Small"
-        },
-        {
-          "value": "medium",
-          "label": "Medium"
-        },
-        {
-          "value": "large",
-          "label": "Large"
-        }
-      ],
-      "default": "medium"
-    },
-    {
-      "type": "checkbox",
-      "id": "auto_rotate",
-      "label": "Auto Rotate Slides",
-      "default": false
-    },
-    {
-      "type": "range",
-      "id": "change_slides_speed",
-      "label": "Slide Speed",
-      "min": 3,
-      "max": 10,
-      "step": 1,
-      "default": 5
-    },
-    {
-      "type": "checkbox",
-      "id": "show_text_below",
-      "label": "Show Text Below Slides",
-      "default": false
-    },
-    {
-      "type": "text",
-      "id": "accessibility_info",
-      "label": "Accessibility Label",
-      "default": "Custom Banner Slider"
-    }
-  ],
-  "blocks": [
-    {
-  "type": "slide",
-  "name": "Slide",
+  "name": "Banner Section",
   "settings": [
     {
       "type": "image_picker",
-      "id": "image",
-      "label": "Slide Image"
-    },
-    {
-      "type": "text",
-      "id": "alt_text",
-      "label": "Alt Text",
-      "default": "Default Alt Text"
+      "id": "top_frame",
+      "label": "Top Frame Image"
     },
     {
       "type": "text",
       "id": "heading",
       "label": "Heading",
-      "default": "Slide Heading"
+      "default": "The Gift Guide"
     },
     {
       "type": "textarea",
       "id": "subheading",
       "label": "Subheading",
-      "default": "Slide Subheading"
+      "default": "Discover your ultimate holiday gift destination."
     },
     {
       "type": "text",
       "id": "button_text",
       "label": "Button Text",
-      "default": "Learn More"
+      "default": "Shop Now"
     },
     {
-      "type": "text",
-      "id": "text",
+      "type": "url",
+      "id": "button_link",
       "label": "Button Link",
-      "default": "#"
+      "default": "/collections/all"
+    },
+    {
+      "type": "image_picker",
+      "id": "bottom_frame",
+      "label": "Bottom Frame Image"
     }
-  ]
-}
-
   ],
   "presets": [
     {
-      "name": "Custom Banner",
-      "category": "Slideshow",
-      "blocks": [
-        {
-          "type": "slide"
-        },
-        {
-          "type": "slide"
-        }
-      ]
+      "name": "Banner Section",
+      "category": "Custom"
     }
   ]
 }
 {% endschema %}
-
-
