@@ -28,13 +28,17 @@
 
     <!-- Right Content -->
     <div class="banner-right">
-      <img
-        src="{{ section.settings.bottom_frame | file_url }}"
-        alt="Bottom Frame"
-        class="banner-bottom-frame"
-        width="100%"
-        height="auto"
-      >
+        {% if section.settings.image %}
+    {{
+      section.settings.image
+      | image_url: width: 3840
+      | image_tag: 
+        alt: "Top Frame", 
+        class: "banner-bottom-frame"
+    }}
+  {% else %}
+    <p>No image selected</p>
+  {% endif %}
     </div>
   </div>
 </section>
@@ -124,11 +128,6 @@
       "type": "image_picker",
       "id": "image",
       "label": "t:sections.image-banner.settings.image.label"
-    },
-    {
-      "type": "image_picker",
-      "id": "bottom_frame",
-      "label": "Bottom Frame Image"
     },
     {
       "type": "text",
