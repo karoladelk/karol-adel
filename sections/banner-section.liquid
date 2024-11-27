@@ -44,7 +44,6 @@
 
 
 <style>
-  
   .banner-section {
     display: flex;
     flex-direction: column;
@@ -53,7 +52,6 @@
     margin: 0 auto;
     width: 1440px;
     height: 780px;
-
   }
 
   .banner-top {
@@ -91,22 +89,18 @@
     text-align: left;
     text-underline-position: from-font;
     text-decoration-skip-ink: none;
-
   }
 
   .banner-subheading {
     margin-bottom: 20px;
-    font-family: 'Jost', sans-serif; 
+    font-family: 'Jost', sans-serif;
     font-size: 20px;
     font-weight: 400;
     line-height: 28px;
     text-align: left;
     text-underline-position: from-font;
     text-decoration-skip-ink: none;
-
   }
-
-  
 
   .banner-button {
     display: inline-block;
@@ -117,12 +111,11 @@
     font-weight: bold;
     border-radius: 5px;
     transition: all 0.3s ease;
-    font-family: 'Jost', sans-serif; 
+    font-family: 'Jost', sans-serif;
     font-size: 15px;
     font-weight: 400;
     line-height: 20.48px;
     text-align: center;
-    
   }
 
   .banner-button:hover {
@@ -132,15 +125,35 @@
 
   /* Right Content */
   .banner-right {
-    flex: 1;
+    width: 890px; /* Fix the width for the image container */
     display: flex;
     overflow: hidden;
   }
 
   .banner-right img {
-    width: 890px;
-    height:400px;
+    width: 100%; /* The image takes the full width of its container */
+    height: 400px; /* Fixed height */
+    object-fit: cover; /* Ensures the image is proportionally cropped */
+  }
 
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .banner-bottom {
+      flex-direction: column;
+      text-align: center;
+      height: auto; /* Adjust height for smaller screens */
+    }
+
+    .banner-right {
+      width: 100%; /* Image takes full width on mobile */
+      height: auto;
+    }
+
+    .banner-left {
+      text-align: center;
+    }
+  }
+</style>
 
 {% schema %}
 {
