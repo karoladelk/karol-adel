@@ -143,8 +143,8 @@
         "type": "banner-section",
         "settings": {
           "frame": "shopify://shop_images/Frame.svg",
-          "arrow": "shopify://shop_images/Arrow_1.png",
-          "arrow_hover": "shopify://shop_images/Line_15.png",
+          "arrow": "shopify://shop_images/Line_15.png",
+          "arrow_hover": "shopify://shop_images/Arrow_1.png",
           "heading": "The Gift Guide",
           "subheading": "Discover Joy: Your Ultimate Holiday Gift Destination. Explore our curated selection and find the perfect gifts to delight your loved ones this holiday season.",
           "button_text": "SHOP NOW",
