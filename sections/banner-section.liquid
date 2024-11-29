@@ -1,5 +1,4 @@
 <section class="banner-section">
-  <!-- Top Frame -->
   <div class="banner-top">
     {% if section.settings.frame %}
       {{
@@ -9,33 +8,24 @@
           alt: "Top Frame", 
           class: "banner-top-frame"
       }}
-    {% else %}
-      <p>No top frame selected</p>
     {% endif %}
   </div>
 
-  <!-- Bottom Content -->
   <div class="banner-bottom">
-    <!-- Left Content -->
     <div class="banner-left">
       <h1 class="banner-heading">{{ section.settings.heading }}</h1>
       <p class="banner-subheading">{{ section.settings.subheading }}</p>
       <a href="{{ section.settings.button_link }}" class="banner-button">
-        <p class="button-text">
-        {{ section.settings.button_text }} 
-      </p>
-        <!-- the arrow -->
-        <svg class="arrow" xmlns="http://www.w3.org/2000/svg" width="50" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <line x1="5" y1="12" x2="45" y2="12"></line>
-          <polyline points="35 4 45 12 35 20"></polyline>
-        </svg>
-         
+        <p class="button-text">{{ section.settings.button_text }}</p>
+        <!-- <svg class="arrow" xmlns="http://www.w3.org/2000/svg" width="50" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg> -->
+
+        <!-- the arrow icon -->
+         <img src="{{section.settings.arrow }}" alt="arrow" class="arrow">
       </a>
-
-      
     </div>
-
-    <!-- Right Content -->
     <div class="banner-right">
       {% if section.settings.frame %}
         {{
@@ -45,208 +35,221 @@
             alt: "Bottom Frame", 
             class: "banner-bottom-frame"
         }}
-      {% else %}
-        <p>No bottom frame selected</p>
       {% endif %}
     </div>
   </div>
 </section>
 
-
 <style>
-
-@import url('https://fonts.googleapis.com/css2?family=Jost:wght@400;500&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Jost:wght@400;500&display=swap');
 
   .banner-section {
     display: flex;
     flex-direction: column;
     align-items: center;
-    text-align: center;
-    margin: 0 auto;
     width: 100%;
-    height: 780px;
-  }
-
-  .banner-top {
-    width: 100%;
-    margin-bottom: auto;
+    height: 100vh;
     overflow: hidden;
   }
 
-  .banner-top img {
-    position: absolute; 
-    top: 0; 
-    left: 0; 
-    width: 100%; 
-    height: auto; 
-    object-fit: cover; 
-    transform-origin: bottom left;
-    transform: translateY(-40px);
+  .banner-top {
+    flex: 1;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
-    
+  .banner-top img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: bottom left;
+    transform-origin: bottom left;
+
   }
 
   .banner-bottom {
+    flex: 1;
     display: flex;
     width: 100%;
-    height: 402px;
+    height: 50%;
+    position: relative;
   }
 
-  /* Left Content */
   .banner-left {
     flex: 1;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    /* justify-content: center; */
     text-align: left;
-    margin-left: 4%;
-
+    padding-left: 4%;
+    top: 0;
   }
 
-.banner-heading {
-  margin-bottom: 25px;
-  font-family: 'Jost', sans-serif;
-  font-size: 70px; 
-  font-weight: 500;
-  line-height: 70px;
-  text-align: left;
-  text-underline-position: from-font;
-  text-decoration-skip-ink: none;
-  color: #000; 
-  opacity: 1; 
-}
+  .banner-heading {
+    margin-bottom: 25px;
+    font-family: 'Jost', sans-serif;
+    font-size: 70px;
+    font-weight: 500;
+    line-height: 70px;
+    text-align: left;
+    color: #000;
+  }
 
-.banner-subheading {
-  margin-bottom: 18px;
-  color: #000;
-  width: 530px;
-  font-family: Jost;
-  font-size: 20px;
-  line-height: 28px;
-  text-align: left;
-  text-underline-position: from-font;
-  text-decoration-skip-ink: none;
+  .banner-subheading {
+    margin-bottom: 18px;
+    font-family: 'Jost', sans-serif;
+    font-size: 20px;
+    line-height: 28px;
+    text-align: left;
+    color: #000;
+    width: 100%;
+    top: 0;
+  }
 
-}
+  .banner-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 30px;
+    background-color: #000;
+    color: #fff;
+    font-family: 'Jost', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    text-decoration: none;
+    border: none;
+    position: relative;
+    overflow: hidden;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+    width: 220px;
+    height: 50px;
+    z-index: 2; /* Higher z-index to appear above the image */
+  }
 
-/* The button */
-.banner-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 15px 30px;
-  background-color: #000;
-  color: #fff;
-  font-family: 'Jost', sans-serif;
-  font-size: 15px;
-  font-weight: 400;
-  text-decoration: none;
-  text-transform: uppercase;
-  border: none;
-  border-radius: 0;
-  position: relative;
-  overflow: hidden;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-  margin-top: 20px;
-  width: 220px;
-  height: 50px;
-  opacity: 1;
-}
+  .banner-button .arrow {
+    font-size: 18px;
+    margin-left: auto;
+    transition: transform 0.3s ease, color 0.3s ease;
+  }
 
-.banner-button .arrow {
-  font-size: 18px;
-  margin-left: auto;
-  transition: transform 0.3s ease, color 0.3s ease;
-}
+  /* .banner-button:hover .arrow {
+    transform: translateX(5px);
+    color: #000;
+  } */
 
-.banner-button .button-text {
-  flex-grow: 1;
-  text-align: center;
-  font-family: 'Jost', sans-serif;
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 20.28;
-}
-
-.banner-button::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background-color: #FFF544;
-  z-index: 0;
-  transition: left 0.3s ease;
-}
-
-.banner-button:hover::before {
-  left: 0;
-}
-
-.banner-button:hover {
-  color: #000;
-}
-
-.banner-button:hover .arrow {
+  .banner-button:hover .arrow {
+  content: url('{{ section.settings.arrow_hover }}');
   transform: translateX(5px);
-  color: #000;
 }
 
-.banner-button:hover .button-text {
-  color: #000;
-}
+  .banner-right {
+    width: 60%;
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
-.banner-button span {
-  position: relative;
-  z-index: 1;
-}
+  .banner-right img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top left;
+    z-index: 1; 
+    transform-origin: top left;
+    transform: scale(1.4);
+  }
 
 
-/* Right Content */
-.banner-right {
-  width: 890px; 
-  height: 400px; 
-  display: flex;
-  overflow: hidden;
-  position: relative; 
-}
 
-.banner-right img {
-  margin-top: 5px;
-  position: absolute; 
-  top: 0; 
-  left: 0; 
-  width: 100%; 
-  height: auto; 
-  object-fit: cover; 
-  transform-origin: top left; 
-  scale: 1.6; 
-}
-
-  /* for responsiveness */
   @media (max-width: 768px) {
+    .banner-section {
+      height: auto;
+    }
+
+    .banner-top {
+      display: none;
+    }
+
     .banner-bottom {
       flex-direction: column;
       text-align: center;
-      height: auto; 
-    }
-
-    .banner-right {
-      width: 100%; 
       height: auto;
     }
 
     .banner-left {
       text-align: center;
+      padding-left: 0;
+      margin-bottom: 20px;
+    }
+
+    .banner-heading {
+      font-size: 40px;
+      line-height: 50px;
+    }
+
+    .banner-subheading {
+      font-size: 18px;
+      line-height: 24px;
+      display: none;
+    }
+
+    .banner-right {
+      width: 100%;
+      height: auto;
+    }
+
+    /* .banner-button {
+      position: absolute;
+      top: 80%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 2;
+    } */
+
+    .banner-button{
+      width: Hug (193px)px;
+      height: Hug (45px)px;
+      top: 337px;
+      left: 90.78px;
+      padding: 13px 20px 13px 20px;
+      gap: 10px;
+      opacity: 0px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+    }
+
+    .banner-button .arrow{
+      font-size: 18px;
+      margin-left: 10px;
+      transition: transform 0.3s ease, color 0.3s ease;
+      /* display: none; */
+    }
+
+    .banner-button .button-text {
+      font-size: 18px;
+      text-align: center;
+      align-items: center;
+
+    } 
+
+    .banner-right img {
+      margin-top: 10px;
+      transform: scale(1);
+      /* width: 100%; */
+      height: 40vh;
+      object-fit: cover;
+      object-position: center;
+
     }
   }
-
-
-
-
-
-
 </style>
 
 {% schema %}
@@ -257,6 +260,16 @@
       "type": "image_picker",
       "id": "frame",
       "label": "Top Frame Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "arrow",
+      "label": "Arrow Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "arrow_hover",
+      "label": "Arrow Hover Image"
     },
     {
       "type": "text",
@@ -291,62 +304,3 @@
   ]
 }
 {% endschema %}
-
-
-
-
-<!-- 
-  .custom-button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 15px 30px;
-  background-color: #000; /* Black background */
-  color: #fff; /* White text */
-  font-family: 'Jost', sans-serif;
-  font-size: 18px;
-  font-weight: 500;
-  text-decoration: none;
-  text-transform: uppercase;
-  border: none;
-  border-radius: 0; /* Sharp edges */
-  position: relative;
-  overflow: hidden; /* For the hover effect transition */
-  transition: background-color 0.3s ease; /* Smooth transition for background */
-}
-
-.custom-button .arrow {
-  margin-left: 10px; /* Space between text and arrow */
-  transition: transform 0.3s ease, color 0.3s ease; /* Smooth arrow movement and color */
-}
-
-.custom-button::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background-color: #ffd700; /* Yellow color for hover effect */
-  z-index: 0;
-  transition: left 0.3s ease; /* Slide in effect for hover */
-}
-
-.custom-button:hover::before {
-  left: 0; /* Bring the yellow background in on hover */
-}
-
-.custom-button:hover {
-  color: #000; /* Change text color to black */
-}
-
-.custom-button:hover .arrow {
-  transform: translateX(5px); /* Move arrow slightly on hover */
-  color: #000; /* Change arrow color to black */
-}
-
-.custom-button span {
-  position: relative; /* Keep the arrow above the hover effect */
-  z-index: 1;
-}
-   -->
