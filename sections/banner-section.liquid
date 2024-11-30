@@ -17,21 +17,16 @@
       <p class="banner-subheading">{{ section.settings.subheading }}</p>
       <a href="{{ section.settings.button_link }}" class="banner-button">
         <p class="button-text">{{ section.settings.button_text }}</p>
-        <!-- <svg xmlns="http://www.w3.org/2000/svg" fill="none" class="icon icon-arrow" viewBox="0 0 14 10">
-          <path fill="currentColor" fill-rule="evenodd" d="M8.537.808a.5.5 0 0 1 .817-.162l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 1 1-.708-.708L11.793 5.5H1a.5.5 0 0 1 0-1h10.793L8.646 1.354a.5.5 0 0 1-.109-.546" clip-rule="evenodd"/>
-        </svg> -->
-        <!-- <img src="{{ 'icon-arrow.svg' | asset_url }}" alt="Arrow" class="icon-arrow"/> -->
+        <!-- Normal Arrow Image -->
         {% if section.settings.arrow %}
-          {{
-            section.settings.arrow
-            | image_url: width: 25
-            | image_tag: 
-              alt: "Arrow", 
-              class: "arrow_hover"
-          }}
+          <img src="{{ section.settings.arrow | image_url: width: 25 }}" alt="Arrow" class="icon-arrow" />
         {% endif %}
-
+        <!-- Hover Arrow Image -->
+        {% if section.settings.arrow_hover %}
+          <img src="{{ section.settings.arrow_hover | image_url: width: 25 }}" alt="Arrow Hover" class="icon-arrow-hover" />
+        {% endif %}
       </a>
+      
       
     </div>
     <div class="banner-right">
@@ -140,12 +135,9 @@
 
   .banner-button .icon-arrow {
   margin-left: 10px;
-  width: 25px; 
-  height: auto;
-  /* fill: currentColor;  */
+  /* width: 25px; 
+  height: auto; */
   transition: transform 0.3s ease, color 0.3s ease;
-  /* color: #fff; */
-  /* fill: #fff; */
 }
 
 
@@ -154,10 +146,14 @@
   color: #000; 
 }
 
-  .banner-button:hover .icon-arrow {
-    transform: translateX(5px);
-    /* fill:#000; */
-  }
+.banner-button:hover .icon-arrow {
+  opacity: 0; /* Hide normal arrow on hover */
+}
+
+.banner-button:hover .icon-arrow-hover {
+  display: block; /* Show the hover arrow */
+  transform: translateX(5px); /* Slide animation */
+}
 
   .banner-right {
     width: 60%;
