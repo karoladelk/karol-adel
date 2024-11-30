@@ -17,14 +17,22 @@
       <p class="banner-subheading">{{ section.settings.subheading }}</p>
       <a href="{{ section.settings.button_link }}" class="banner-button">
         <p class="button-text">{{ section.settings.button_text }}</p>
-        <!-- <svg class="arrow" xmlns="http://www.w3.org/2000/svg" width="50" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <line x1="5" y1="12" x2="19" y2="12"></line>
-          <polyline points="12 5 19 12 12 19"></polyline>
+        <!-- <svg xmlns="http://www.w3.org/2000/svg" fill="none" class="icon icon-arrow" viewBox="0 0 14 10">
+          <path fill="currentColor" fill-rule="evenodd" d="M8.537.808a.5.5 0 0 1 .817-.162l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 1 1-.708-.708L11.793 5.5H1a.5.5 0 0 1 0-1h10.793L8.646 1.354a.5.5 0 0 1-.109-.546" clip-rule="evenodd"/>
         </svg> -->
+        <!-- <img src="{{ 'icon-arrow.svg' | asset_url }}" alt="Arrow" class="icon-arrow"/> -->
+        {% if section.settings.arrow %}
+          {{
+            section.settings.arrow
+            | image_url: width: 25
+            | image_tag: 
+              alt: "Arrow", 
+              class: "arrow_hover"
+          }}
+        {% endif %}
 
-        <!-- the arrow icon -->
-         <img src="{{section.settings.arrow }}" alt="arrow" class="arrow">
       </a>
+      
     </div>
     <div class="banner-right">
       {% if section.settings.frame %}
@@ -130,21 +138,26 @@
     z-index: 2; /* Higher z-index to appear above the image */
   }
 
-  .banner-button .arrow {
-    font-size: 18px;
-    margin-left: auto;
-    transition: transform 0.3s ease, color 0.3s ease;
-  }
-
-  /* .banner-button:hover .arrow {
-    transform: translateX(5px);
-    color: #000;
-  } */
-
-  .banner-button:hover .arrow {
-  content: url('{{ section.settings.arrow_hover }}');
-  transform: translateX(5px);
+  .banner-button .icon-arrow {
+  margin-left: 10px;
+  width: 25px; 
+  height: auto;
+  /* fill: currentColor;  */
+  transition: transform 0.3s ease, color 0.3s ease;
+  /* color: #fff; */
+  /* fill: #fff; */
 }
+
+
+.banner-button:hover {
+  background-color: #fff544; 
+  color: #000; 
+}
+
+  .banner-button:hover .icon-arrow {
+    transform: translateX(5px);
+    /* fill:#000; */
+  }
 
   .banner-right {
     width: 60%;
@@ -165,6 +178,13 @@
     transform: scale(1.4);
   }
 
+  .banner-button:hover{
+      background-color: #FFF544;
+      color: #000;
+      opacity: 1;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      box-shadow: 0px 2px 4px 0px #00000033;
+    }
 
 
   @media (max-width: 768px) {
@@ -225,6 +245,7 @@
       justify-content: center;
 
     }
+
 
     .banner-button .arrow{
       font-size: 18px;
