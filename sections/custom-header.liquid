@@ -1,0 +1,178 @@
+<header class="custom-header">
+    <div class="header-left">
+      <h1 class="header-heading">{{ section.settings.brand_name }}</h1>
+    </div>
+    <div class="header-center">
+      <p class="header-text">{{ section.settings.slogan }}</p>
+    </div>
+    <div class="header-right">
+      <a href="#" class="header-button">
+        <p class="button-text">{{ section.settings.header_button_text }}</p>
+        <!-- Normal Arrow Image -->
+        {% if section.settings.arrow %}
+          <img src="{{ section.settings.arrow | image_url: width: 25 }}" alt="Arrow" class="icon-arrow" />
+        {% endif %}
+        <!-- Hover Arrow Image -->
+        {% if section.settings.arrow_hover %}
+          <img src="{{ section.settings.arrow_hover | image_url: width: 25 }}" alt="Arrow Hover" class="icon-arrow-hover" />
+        {% endif %}
+      </a>
+    </div>
+  </header>
+  
+  <style>
+    .custom-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+      /* padding: 0 16px; */
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: #F5F5F5;
+    }
+  
+    .header-left {
+      flex: 1;
+    }
+  
+    .header-heading {
+      font-family: 'Jost', sans-serif;
+      font-size: 18px;
+      font-weight: 500;
+      /* margin: 0; */
+    }
+  
+    .header-center {
+      flex: 2;
+      text-align: center;
+    }
+  
+    .header-text {
+      font-family: 'Jost', sans-serif;
+      font-size: 16px;
+      font-weight: 400;
+      color: #333;
+      margin: 0;
+    }
+  
+    .header-right {
+      flex: 1;
+      text-align: right;
+    }
+  
+    .header-button {
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 20px;
+      background-color: #FFF544;
+      color: #000;
+      font-family: 'Jost', sans-serif;
+      font-size: 15px;
+      font-weight: 400;
+      border: none;
+      position: relative;
+      overflow: hidden;
+      width: 207px;
+      height: 44px;
+      transition: background-color 0.3s ease;
+    }
+  
+    .header-button .button-text {
+      flex-grow: 1;
+      text-align: center;
+      font-size: 15px;
+      z-index: 2;
+    }
+  
+    .header-button img {
+      margin-left: 10px;
+      width: 25px;
+      height: auto;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+  
+    .icon-arrow {
+      opacity: 1;
+    }
+  
+    .icon-arrow-hover {
+      opacity: 0;
+      position: absolute;
+      right: 30px;
+    }
+  
+    .header-button:hover .icon-arrow {
+      opacity: 0;
+    }
+  
+    .header-button:hover .icon-arrow-hover {
+      opacity: 1;
+      transform: translateX(5px);
+      z-index: 5;
+    }
+  
+    .header-button::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background-color: #000;
+      z-index: 1;
+      transition: left 0.3s ease;
+    }
+  
+    .header-button:hover::before {
+      left: 0;
+    }
+  
+    .header-button:hover {
+      color: #FFF;
+    }
+  
+    .header-button:hover .button-text {
+      color: #FFF;
+    }
+  </style>
+  
+  {% schema %}
+  {
+    "name": "Custom Header",
+    "settings": [
+      {
+        "type": "text",
+        "id": "brand_name",
+        "label": "Brand Name",
+        "default": "Brand Name"
+      },
+      {
+        "type": "text",
+        "id": "slogan",
+        "label": "Slogan",
+        "default": "Your amazing slogan here"
+      },
+      {
+        "type": "text",
+        "id": "header_button_text",
+        "label": "Button Text",
+        "default": "Shop Now"
+      },
+      {
+        "type": "image_picker",
+        "id": "arrow",
+        "label": "Arrow Image"
+      },
+      {
+        "type": "image_picker",
+        "id": "arrow_hover",
+        "label": "Arrow Hover Image"
+      }
+    ]
+  }
+  {% endschema %}
+  
