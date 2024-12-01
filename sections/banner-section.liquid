@@ -15,6 +15,7 @@
     <div class="banner-left">
       <h1 class="banner-heading">{{ section.settings.heading }}</h1>
       <p class="banner-subheading">{{ section.settings.subheading }}</p>
+      <p class="banner-subheading-ss">Discover Joy: Your Ultimate Holiday Gift Destination.</p>
       <a href="{{ section.settings.button_link }}" class="banner-button">
         <p class="button-text">{{ section.settings.button_text }}</p>
         <!-- Normal Arrow Image -->
@@ -51,7 +52,8 @@
     flex-direction: column;
     align-items: center;
     width: 100%;
-    height: 100vh;
+    /* height: 100vh; */
+    height: auto;
     overflow: hidden;
   }
 
@@ -62,22 +64,22 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
   }
 
   .banner-top img {
     width: 100%;
-    height: 100%;
+    /* height: 100%; */
     object-fit: cover;
     object-position: bottom left;
     transform-origin: bottom left;
-
+    height: 50vh;
   }
 
   .banner-bottom {
     flex: 1;
     display: flex;
     width: 100%;
-    height: 50%;
     position: relative;
   }
 
@@ -92,17 +94,18 @@
   }
 
   .banner-heading {
-    margin-bottom: 25px;
+    margin-bottom: 20px;
     font-family: 'Jost', sans-serif;
     font-size: 70px;
     font-weight: 500;
     line-height: 70px;
     text-align: left;
     color: #000;
+    margin-top: 3.5rem;
   }
 
   .banner-subheading {
-    margin-bottom: 18px;
+    /* margin-bottom: 18px; */
     font-family: 'Jost', sans-serif;
     font-size: 20px;
     line-height: 28px;
@@ -112,7 +115,11 @@
     top: 0;
   }
 
-  .banner-button {
+  .banner-subheading-ss {
+    display: none;
+  } 
+
+    .banner-button {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -126,34 +133,65 @@
     border: none;
     position: relative;
     overflow: hidden;
-    transition: background-color 0.3s ease;
     margin-top: 20px;
     width: 220px;
     height: 50px;
-    z-index: 2; /* Higher z-index to appear above the image */
+    z-index: 1;
   }
 
-  .banner-button .icon-arrow {
-  margin-left: 10px;
-  /* width: 25px; 
-  height: auto; */
-  transition: transform 0.3s ease, color 0.3s ease;
-}
+  .banner-button .button-text {
+    flex-grow: 1;
+    text-align: center;
+    font-size: 15px;
+    z-index: 2;
+  }
 
+  .banner-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background-color: #FFF544;
+    z-index: 1;
+    transition: left 0.3s ease;
+  }
 
-.banner-button:hover {
-  background-color: #fff544; 
-  color: #000; 
-}
+  .banner-button:hover::before {
+    left: 0;
+  }
 
-.banner-button:hover .icon-arrow {
-  opacity: 0; /* Hide normal arrow on hover */
-}
+  .banner-button:hover {
+    color: #000;
+  }
 
-.banner-button:hover .icon-arrow-hover {
-  display: block; /* Show the hover arrow */
-  transform: translateX(5px); /* Slide animation */
-}
+  .icon-arrow,
+  .icon-arrow-hover {
+    width: 28px;
+    height: auto;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+
+  .icon-arrow {
+    opacity: 1;
+  }
+
+  .icon-arrow-hover {
+    opacity: 0;
+    position: absolute;
+    right: 30px;
+  }
+
+  .banner-button:hover .icon-arrow {
+    opacity: 0;
+  }
+
+  .banner-button:hover .icon-arrow-hover {
+    opacity: 1;
+    transform: translateX(5px);
+    z-index: 5;
+  }
 
   .banner-right {
     width: 60%;
@@ -166,7 +204,7 @@
 
   .banner-right img {
     width: 100%;
-    height: 100%;
+    height: 50vh;
     object-fit: cover;
     object-position: top left;
     z-index: 1; 
@@ -182,91 +220,106 @@
       box-shadow: 0px 2px 4px 0px #00000033;
     }
 
-
-  @media (max-width: 768px) {
-    .banner-section {
-      height: auto;
-    }
-
-    .banner-top {
-      display: none;
-    }
-
-    .banner-bottom {
-      flex-direction: column;
-      text-align: center;
-      height: auto;
-    }
-
-    .banner-left {
-      text-align: center;
-      padding-left: 0;
-      margin-bottom: 20px;
-    }
-
-    .banner-heading {
-      font-size: 40px;
-      line-height: 50px;
-    }
-
-    .banner-subheading {
-      font-size: 18px;
-      line-height: 24px;
-      display: none;
-    }
-
-    .banner-right {
-      width: 100%;
-      height: auto;
-    }
-
-    /* .banner-button {
-      position: absolute;
-      top: 80%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 2;
-    } */
-
-    .banner-button{
-      width: Hug (193px)px;
-      height: Hug (45px)px;
-      top: 337px;
-      left: 90.78px;
-      padding: 13px 20px 13px 20px;
-      gap: 10px;
-      opacity: 0px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-    }
-
-
-    .banner-button .arrow{
-      font-size: 18px;
-      margin-left: 10px;
-      transition: transform 0.3s ease, color 0.3s ease;
-      /* display: none; */
-    }
-
-    .banner-button .button-text {
-      font-size: 18px;
-      text-align: center;
-      align-items: center;
-
-    } 
-
-    .banner-right img {
-      margin-top: 10px;
-      transform: scale(1);
-      /* width: 100%; */
-      height: 40vh;
-      object-fit: cover;
-      object-position: center;
-
-    }
+    @media (max-width: 768px) {
+  .banner-section {
+    height: auto;
   }
+
+  .banner-top {
+    display: none;
+  }
+
+  .banner-bottom {
+    flex-direction: column;
+    text-align: center;
+    height: auto;
+    position: relative; 
+  }
+
+  .banner-left {
+    text-align: center;
+    padding-left: 0;
+  }
+
+  .banner-heading {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    font-family: 'Jost', sans-serif;
+    font-size: 30px;
+    font-weight: 500;
+    line-height: 30px;
+    text-align: center;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+  }
+
+  .banner-subheading {
+    display: none;
+  }
+
+  .banner-subheading-ss {
+    display: block;
+    font-family: 'Jost', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 20.8px;
+    text-align: center;
+    color: #000;
+    width: 70%;
+    margin: 0 auto;
+  }
+
+  .banner-right {
+    width: 100%;
+    height: auto;
+    position: relative; 
+  }
+
+  .banner-button {
+    width: 193px;
+    height: 45px;
+    position: absolute; 
+    top: 80%; 
+    left: 50%; 
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 13px 20px;
+    background: #000000;
+    color: #fff;
+    border: none;
+    z-index: 4; 
+  }
+
+  .banner-button .arrow {
+    font-size: 18px;
+    margin-left: 10px;
+    transition: transform 0.3s ease, color 0.3s ease;
+  }
+
+  .banner-button .button-text {
+    font-size: 18px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .banner-right img {
+    transform: scale(1.05);
+    height: 32vh;
+    object-fit: cover;
+    object-position: center;
+
+    z-index: 1;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+  }
+}
+
+
 </style>
 
 {% schema %}
